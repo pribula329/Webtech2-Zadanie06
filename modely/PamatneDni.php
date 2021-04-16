@@ -1,14 +1,13 @@
 <?php
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(E_ALL);
-class Dni{
 
+class PamatneDni{
     private $conn;
-    private $table_name = "dni";
+    private $table_name = "pamatneDni";
     public $id;
     public $den;
     public $mesiac;
+    public $idKrajina;
+    public $pamatnyDen;
 
     /**
      * Dni constructor.
@@ -19,9 +18,10 @@ class Dni{
         $this->conn = $conn;
     }
 
-    public function getVsetkyDni(){
-        // select all query
-        $query = 'SELECT * FROM ' . $this->table_name .';';
+    public function getVsetkyPamatneDni(){
+// select all query
+        $query = 'select pamatneDni.id,dni.den,dni.mesiac, pamatneDni.idKrajina, pamatneDni.pamatnyDen from pamatneDni left join dni on pamatneDni.idDen = dni.id;';
+
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -30,9 +30,7 @@ class Dni{
         $stmt->execute();
 
         return $stmt;
-
     }
-
 
 
 }
