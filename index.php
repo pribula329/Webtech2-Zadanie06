@@ -14,6 +14,17 @@
 
 
 
+<div class="formular">
+    <div class="mb-3">
+        <label for="den" class="form-label">Deň</label>
+        <input type="number" class="form-control" id="den" name="den">
+    </div>
+    <div class="mb-3">
+        <label for="mesiac" class="form-label">Mesiac</label>
+        <input type="number" class="form-control" id="mesiac" name="mesiac">
+    </div>
+    <button type="submit" value="Submit" id="meninyZdatumu">Zistit kto ma meniny v daný dátum</button>
+</div>
 
 <div class="formular">
 
@@ -22,7 +33,7 @@
     <button id="pamatneDni">Pamatne dni</button>
 
 </div>
-
+<div id="meniny"></div>
 <div id="sviatky">
 
 

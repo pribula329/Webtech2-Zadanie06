@@ -34,6 +34,22 @@ $(document).ready(function(){
                 vypis(msg.records,3);
             }});
     });
+    $("#meninyZdatumu").click(function(){
+        var den = document.getElementById("den").value;
+        var mesiac = document.getElementById("mesiac").value;
+        $.ajax({
+            type: 'GET',
+            url: 'api/mena/meniny.php',
+            data: {den : den,
+                   mesiac: mesiac
+            },
+            success: function(msg){
+                console.log(msg)
+                console.log(msg.records)
+                console.log(msg.records[0])
+                vypisMeniny(msg.records);
+            }});
+    });
 
 });
 
@@ -72,6 +88,18 @@ function vypis(pole,stat){
             vypis.innerHTML += "<tr> <td>"+pole[i].den+"</td> <td>"+pole[i].mesiac+"</td><td>"+ pole[i].pamatnyDen+"</td> </tr>";
 
         }
-        }
+    }
 
+}
+
+function vypisMeniny(pole){
+    var vypis = document.getElementById('meniny');
+    while (vypis.firstChild){
+        vypis.removeChild(vypis.lastChild);
+    }
+
+    vypis.innerHTML = "<h1>Meniny "+pole[0].den+"."+pole[0].mesiac+". má:</h1>";
+    for (var i=0; i<pole.length;i++){
+        vypis.innerHTML +=pole[i].meno +"<br>";
+    }
 }
