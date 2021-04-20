@@ -31,16 +31,8 @@ class Mena{
         return $stmt;
     }
     public function getDatum($meno,$krajina){
-        // select all query
-        $query1 = 'select krajiny.id from krajiny where nazov_krajiny='.$krajina.' limit 1;';
-        // prepare query statement
-        $stmt1 = $this->conn->prepare($query1);
 
-        // execute query
-        $stmt1->execute();
-        $id = $stmt1->fetch(PDO::FETCH_ASSOC);
-
-        $query = 'select mena.id, mena.idKrajina,mena.meno from mena where meno='.$meno.' and idKrajina='.$id['id'].';';
+        $query = 'select mena.id,dni.den,dni.mesiac, mena.idKrajina,mena.meno from mena left join dni on mena.idDen = dni.id where meno='.'"'.$meno.'"'.' and idKrajina='.$krajina.';';
         // prepare query statement
         $stmt = $this->conn->prepare($query);
 
@@ -48,6 +40,54 @@ class Mena{
         $stmt->execute();
 
         return $stmt;
+    }
+
+    public function vytvorMeno(){
+
+        // select all query
+        $query = 'SELECT id FROM dni WHERE den='.$this->den.' AND mesiac='.$this->mesiac.';';
+
+        // prepare query statement
+        $stm = $this->conn->prepare($query);
+
+        // execute query
+        $stm->execute();
+        $konstanta = $stm->fetch(PDO::FETCH_ASSOC);
+
+        if ($konstanta!=false){
+            $id = $konstanta['id'];
+            echo $id;
+        }
+        else{
+            return false;
+        }
+
+
+        // query to insert record
+        $query = "INSERT INTO
+                " . $this->table_name . "
+            SET
+                meno=:meno, idDen=:idDen, idKrajina=:idKrajina";
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        $this->meno=htmlspecialchars(strip_tags($this->meno));
+
+
+        // bind values
+        $stmt->bindParam(":meno", $this->meno);
+        $stmt->bindParam(":idDen", $id);
+        $stmt->bindParam(":idKrajina",$this->idKrajina);
+
+
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+
+        return false;
+
     }
 
 }

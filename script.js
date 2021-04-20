@@ -51,6 +51,37 @@ $(document).ready(function(){
             }});
     });
 
+    $("#datumZmena").click(function(){
+        var meno = document.getElementById("meno").value;
+        var krajina = document.getElementById("krajina").value;
+        $.ajax({
+            type: 'GET',
+            url: 'api/mena/datum.php',
+            data: {meno: meno,
+                    krajina: krajina
+            },
+            success: function(msg){
+                console.log(msg)
+                console.log(msg.records)
+                console.log(msg.records[0])
+                vypisDatum(msg.records);
+            }});
+    });
+    $("#vytvor").click(function(){
+        var meno = document.getElementById("menoV").value;
+        var den = document.getElementById("denV").value;
+        var mesiac = document.getElementById("mesiacV").value;
+        let data = {meno:meno,den:den,mesiac:mesiac};
+        $.ajax({
+            type: 'POST',
+            url: 'api/mena/vytvorMeno.php',
+
+            body: JSON.stringify(data),
+            success: function(msg){
+                console.log(msg)
+            }});
+    });
+
 });
 
 function vypis(pole,stat){
@@ -101,5 +132,17 @@ function vypisMeniny(pole){
     vypis.innerHTML = "<h1>Meniny "+pole[0].den+"."+pole[0].mesiac+". má:</h1>";
     for (var i=0; i<pole.length;i++){
         vypis.innerHTML +=pole[i].meno +"<br>";
+    }
+}
+
+function vypisDatum(pole){
+    var vypis = document.getElementById('datum');
+    while (vypis.firstChild){
+        vypis.removeChild(vypis.lastChild);
+    }
+
+    vypis.innerHTML = "<h1>"+ pole[0].meno + " má meniny: </h1><br>";
+    for (var i=0; i<pole.length;i++){
+        vypis.innerHTML +=pole[i].den + "." + pole[i].mesiac +".<br>";
     }
 }

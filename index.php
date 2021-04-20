@@ -12,7 +12,41 @@
 </head>
 <body >
 
+<div class="formular">
+    <div class="mb-3">
+        <label for="meno" class="form-label">Meno</label>
+        <input type="text" class="form-control" id="menoV" name="menoV">
+    </div>
+    <div class="mb-3">
+        <label for="denV" class="form-label">Deň</label>
+        <input type="number" class="form-control" id="denV" name="denV">
+    </div>
+    <div class="mb-3">
+        <label for="mesiacV" class="form-label">Mesiac</label>
+        <input type="number" class="form-control" id="mesiacV" name="mesiacV">
+    </div>
 
+    <button type="submit" value="Submit" id="vytvor">Vlož meniny</button>
+</div>
+
+<div class="formular">
+    <div class="mb-3">
+        <label for="meno" class="form-label">Meno</label>
+        <input type="text" class="form-control" id="meno" name="meno">
+    </div>
+    <div>
+        <label for="krajina">Choose a car:</label>
+        <select name="krajina" id="krajina">
+            <option value="1">SK</option>
+            <option value="2">SKd</option>
+            <option value="3">CZ</option>
+            <option value="4">HU</option>
+            <option value="5">PL</option>
+            <option value="6">AT</option>
+        </select>
+    </div>
+    <button type="submit" value="Submit" id="datumZmena">Zistit kedy ma osoba meniny</button>
+</div>
 
 <div class="formular">
     <div class="mb-3">
@@ -34,6 +68,7 @@
 
 </div>
 <div id="meniny"></div>
+<div id="datum"></div>
 <div id="sviatky">
 
 
