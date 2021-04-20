@@ -17,18 +17,17 @@ $product = new Mena($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"),true);
-var_dump($data);
+var_dump($data['den']);
 // make sure data is not empty
 if(
-!empty($data->meno) &&
-!empty($data->den) &&
-!empty($data->mesiac)
+!empty($data['meno']) &&
+!empty($data['den']) &&
+!empty($data['mesiac'])
 ){
- var_dump($data);
 // set product property values
-$product->meno = $data->meno;
-$product->den = (int)$data->den;
-$product->mesiac = (int)$data->mesiac;
+$product->meno = $data['meno'];
+$product->den = $data['den'];
+$product->mesiac = $data['mesiac'];
 $product->idKrajina = 2;
 
 

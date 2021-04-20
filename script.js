@@ -71,15 +71,18 @@ $(document).ready(function(){
         var meno = document.getElementById("menoV").value;
         var den = document.getElementById("denV").value;
         var mesiac = document.getElementById("mesiacV").value;
-        let data = {meno:meno,den:den,mesiac:mesiac};
+        let data = {"meno":meno,"den":den,"mesiac":mesiac};
         $.ajax({
             type: 'POST',
             url: 'api/mena/vytvorMeno.php',
+            dataType: 'json',
+            data: JSON.stringify(data),
 
-            body: JSON.stringify(data),
             success: function(msg){
                 console.log(msg)
             }});
+
+        console.log(data);
     });
 
 });
@@ -129,6 +132,9 @@ function vypisMeniny(pole){
         vypis.removeChild(vypis.lastChild);
     }
 
+    if (pole.length===0){
+        vypis.innerHTML="<h1>Zadal si zlý dátum</h1>"
+    }
     vypis.innerHTML = "<h1>Meniny "+pole[0].den+"."+pole[0].mesiac+". má:</h1>";
     for (var i=0; i<pole.length;i++){
         vypis.innerHTML +=pole[i].meno +"<br>";

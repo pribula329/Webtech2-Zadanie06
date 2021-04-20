@@ -72,6 +72,7 @@ if ($method == 'GET') {
         echo json_encode(
             array("message" => "No products found.")
         );
+
     }
 }
 
