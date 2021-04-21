@@ -12,7 +12,7 @@
 </head>
 <body >
 
-<div class="formular">
+<div class="formular" id="vlozenieFormular">
     <div class="mb-3">
         <label for="meno" class="form-label">Meno</label>
         <input type="text" class="form-control" id="menoV" name="menoV">
@@ -26,17 +26,18 @@
         <input type="number" class="form-control" id="mesiacV" name="mesiacV">
     </div>
 
-    <button type="submit" value="Submit" id="vytvor">Vlož meniny</button>
+    <button type="submit" class="btn btn-primary" value="Submit" id="vytvor">Vlož meniny</button>
 </div>
 
-<div class="formular">
+<div class="formular" id="datumFormular">
     <div class="mb-3">
         <label for="meno" class="form-label">Meno</label>
         <input type="text" class="form-control" id="meno" name="meno">
     </div>
     <div>
-        <label for="krajina">Choose a car:</label>
-        <select name="krajina" id="krajina">
+
+        <select name="krajina" id="krajina" class="form-select" aria-label="Default select example">
+            <option selected>Vyber Krajinu</option>
             <option value="1">SK</option>
             <option value="2">SKd</option>
             <option value="3">CZ</option>
@@ -45,10 +46,10 @@
             <option value="6">AT</option>
         </select>
     </div>
-    <button type="submit" value="Submit" id="datumZmena">Zistit kedy ma osoba meniny</button>
+    <button type="submit" class="btn btn-primary"  value="Submit" id="datumZmena">Zistit kedy ma osoba meniny</button>
 </div>
 
-<div class="formular">
+<div class="formular" id="meninyFormular">
     <div class="mb-3">
         <label for="den" class="form-label">Deň</label>
         <input type="number" class="form-control" id="den" name="den">
@@ -57,17 +58,21 @@
         <label for="mesiac" class="form-label">Mesiac</label>
         <input type="number" class="form-control" id="mesiac" name="mesiac">
     </div>
-    <button type="submit" value="Submit" id="meninyZdatumu">Zistit kto ma meniny v daný dátum</button>
+    <button type="submit" class="btn btn-primary" value="Submit" id="meninyZdatumu">Zistit kto ma meniny v daný dátum</button>
 </div>
 
 <div class="formular">
 
-    <button id="skSviatky">SviatkySK</button>
-    <button id="czSviatky">SviatkyCZ</button>
-    <button id="pamatneDni">Pamatne dni</button>
-
+    <button id="skSviatky" class="btn btn-primary">SviatkySK</button>
+    <button id="czSviatky" class="btn btn-primary">SviatkyCZ</button>
+    <button id="pamatneDni" class="btn btn-primary">Pamatne dni</button>
+    <button class="btn btn-primary"  id="vytvorTlac">Vložiť meniny</button><br><br>
+    <button class="btn btn-primary"  id="meninyTlac">Najsť meniny podľa dátumu</button>
+    <button class="btn btn-primary"  id="datumTlac">Nájsť dátum podľa mena</button>
+    <button class="btn btn-primary"  id="dokumentaciaTlac">Dokumentácia</button>
 </div>
-<div id="meniny"></div>
+<main class="container">
+<div id="meniny" ></div>
 <div id="datum"></div>
 <div id="sviatky">
 
@@ -122,8 +127,30 @@
     </div>
 
 </div>
-
-
+<div id="dokumentacia">
+    <h1>Dokumentácia API</h1><br>
+    <div>
+        <h2>Sviatky SK a CZ</h2>
+        <p>Metoda GET<br> služba -> sviatky.php<br> model -> Sviatky.php<br> Zistí všetky sviatky na SK alebo CZ podľa požiadavky klienta</p>
+    </div>
+    <div>
+        <h2>Pamätné dni na SK</h2>
+        <p>Metoda GET<br> služba -> pamatne.php<br> model -> PamatneDni.php<br> Zistí všetky pamätné dni na SK</p>
+    </div>
+    <div>
+        <h2>Meniny z dátumu</h2>
+        <p>Metoda GET<br> služba -> meniny.php<br> model -> Mena.php<br> Po zadaní dátumu nám zistí kto ma v daný deň meniny</p>
+    </div>
+    <div>
+        <h2>Dátum z mena a krajiny</h2>
+        <p>Metoda GET<br> služba -> datum.php<br> model -> Mena.php<br> Po zadaní mena a kódu krajiny nám zistí kedý ma daná osoba v danej krajine meniny</p>
+    </div>
+    <div>
+        <h2>Vloženie mena</h2>
+        <p>Metoda POST<br> služba -> vytvorMeno.php<br> model -> Mena.php<br> Po zadaní mena a dátumu osobe vloží meniny</p>
+    </div>
+</div>
+</main>
 </body>
 
 </html>

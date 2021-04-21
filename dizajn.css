@@ -7,3 +7,32 @@
 #pamatneSK{
     display: none;
 }
+#vlozenieFormular{
+    display: none;
+}
+#meninyFormular{
+    display: none;
+}
+#datumFormular{
+    display: none;
+}
+table{
+    background-color: white;
+}
+body{
+     background: linear-gradient(to top left, #4A148C, #C51162);
+     color: white;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+ }
+.formular{
+
+    width: 35%;
+    margin:2em auto;
+
+    padding: 30px 40px 20px 40px;
+
+}
+#dokumentacia{
+    display: none;
+}

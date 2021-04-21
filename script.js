@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     $("#skSviatky").click(function(){
         $.ajax({
@@ -85,14 +86,43 @@ $(document).ready(function(){
         console.log(data);
     });
 
-});
+    $("#vytvorTlac").click(function(){
+        skrytS();
+        skrytDM();
+        document.getElementById('vlozenieFormular').style.display="block";
+    });
+    $("#datumTlac").click(function(){
+        skrytS();
+        skrytDM();
+        document.getElementById('datumFormular').style.display="block";
+    });
+    $("#meninyTlac").click(function(){
+        skrytS();
+        skrytDM();
+        document.getElementById('meninyFormular').style.display="block";
+    });
+    $("#dokumentaciaTlac").click(function(){
 
+        dokument();
+    });
+});
+function dokument() {
+    var dok = document.getElementById('dokumentacia');
+    if (dok.style.display==="block"){
+        dok.style.display="none";
+    }
+    else {
+        dok.style.display="block";
+
+    }
+}
 function vypis(pole,stat){
 
     if (stat==1){
         document.getElementById('pamatneSK').style.display="none";
         document.getElementById('tabulkaSk').style.display="block";
         document.getElementById('tabulkaCZ').style.display="none";
+        skrytDM();
         var vypis = document.getElementById('skHodnoty');
     }
     else if (stat==3){
@@ -100,12 +130,14 @@ function vypis(pole,stat){
         document.getElementById('tabulkaSk').style.display="none";
         document.getElementById('tabulkaCZ').style.display="none";
         var vypis = document.getElementById('pamatneHodnoty');
+        skrytDM();
     }
     else {
         document.getElementById('pamatneSK').style.display="none";
         document.getElementById('tabulkaSk').style.display="none";
         document.getElementById('tabulkaCZ').style.display="block";
         var vypis = document.getElementById('czHodnoty');
+        skrytDM();
     }
 
     while (vypis.firstChild){
@@ -128,6 +160,7 @@ function vypis(pole,stat){
 
 function vypisMeniny(pole){
     var vypis = document.getElementById('meniny');
+    vypis.style.display="block";
     while (vypis.firstChild){
         vypis.removeChild(vypis.lastChild);
     }
@@ -143,6 +176,7 @@ function vypisMeniny(pole){
 
 function vypisDatum(pole){
     var vypis = document.getElementById('datum');
+    vypis.style.display="block";
     while (vypis.firstChild){
         vypis.removeChild(vypis.lastChild);
     }
@@ -151,4 +185,17 @@ function vypisDatum(pole){
     for (var i=0; i<pole.length;i++){
         vypis.innerHTML +=pole[i].den + "." + pole[i].mesiac +".<br>";
     }
+}
+
+function skrytDM(){
+    document.getElementById('datum').style.display="none";
+    document.getElementById('datumFormular').style.display="none";
+    document.getElementById('meniny').style.display="none";
+    document.getElementById('meninyFormular').style.display="none";
+    document.getElementById('vlozenieFormular').style.display="none";
+}
+function skrytS(){
+    document.getElementById('pamatneSK').style.display="none";
+    document.getElementById('tabulkaSk').style.display="none";
+    document.getElementById('tabulkaCZ').style.display="none";
 }
